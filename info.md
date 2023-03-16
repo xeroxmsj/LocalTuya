@@ -1,9 +1,11 @@
 rospogrigio's Version:
+
 [![](https://img.shields.io/github/release/rospogrigio/localtuya-homeassistant/all.svg?style=for-the-badge)](https://github.com/rospogrigio/localtuya-homeassistant/releases)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 [![](https://img.shields.io/badge/MAINTAINER-%40rospogrigio-green?style=for-the-badge)](https://github.com/rospogrigio)
 
 My Version:
+
 [![](https://img.shields.io/github/release/xeroxmsj/localtuya/all.svg?style=for-the-badge)](https://github.com/xeroxmsj/localtuya/releases)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 [![](https://img.shields.io/badge/MAINTAINER-%40xeroxmsj-green?style=for-the-badge)](https://github.com/xeroxmsj)
