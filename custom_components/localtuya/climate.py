@@ -15,6 +15,9 @@ from homeassistant.components.climate.const import (
     CURRENT_HVAC_IDLE,
     HVAC_MODE_AUTO,
     HVAC_MODE_HEAT,
+    HVAC_MODE_COOL,
+    HVAC_MODE_DRY,
+    HVAC_MODE_FAN_ONLY,
     HVAC_MODE_OFF,
     PRESET_AWAY,
     PRESET_ECO,
@@ -37,6 +40,8 @@ from homeassistant.const import (
 from .common import LocalTuyaEntity, async_setup_entry
 from .const import (
     CONF_CURRENT_TEMPERATURE_DP,
+    CONF_TEMP_MAX,
+    CONF_TEMP_MIN,
     CONF_ECO_DP,
     CONF_ECO_VALUE,
     CONF_HEURISTIC_ACTION,
@@ -79,6 +84,13 @@ HVAC_MODE_SETS = {
     "1/0": {
         HVAC_MODE_HEAT: "1",
         HVAC_MODE_AUTO: "0",
+    },
+    "Qlima": {
+        HVAC_MODE_HEAT: "hot",
+        HVAC_MODE_AUTO: "auto",
+        HVAC_MODE_COOL: "cold",
+        HVAC_MODE_DRY: "dry",
+        HVAC_MODE_FAN_ONLY: "wind",
     },
 }
 HVAC_ACTION_SETS = {
@@ -124,6 +136,8 @@ def flow_schema(dps):
         vol.Optional(CONF_TEMPERATURE_STEP): vol.In(
             [PRECISION_WHOLE, PRECISION_HALVES, PRECISION_TENTHS]
         ),
+        vol.Optional(CONF_TEMP_MIN, default=DEFAULT_MIN_TEMP): vol.Coerce(float),
+        vol.Optional(CONF_TEMP_MAX, default=DEFAULT_MAX_TEMP): vol.Coerce(float),
         vol.Optional(CONF_MAX_TEMP_DP): vol.In(dps),
         vol.Optional(CONF_MIN_TEMP_DP): vol.In(dps),
         vol.Optional(CONF_PRECISION): vol.In(
@@ -343,6 +357,8 @@ class LocaltuyaClimate(LocalTuyaEntity, ClimateEntity):
         """Return the minimum temperature."""
         if self.has_config(CONF_MIN_TEMP_DP):
             return self.dps_conf(CONF_MIN_TEMP_DP)
+        if self.has_config(CONF_TEMP_MIN):
+            return self._config[CONF_TEMP_MIN]
         return DEFAULT_MIN_TEMP
 
     @property
@@ -350,6 +366,8 @@ class LocaltuyaClimate(LocalTuyaEntity, ClimateEntity):
         """Return the maximum temperature."""
         if self.has_config(CONF_MAX_TEMP_DP):
             return self.dps_conf(CONF_MAX_TEMP_DP)
+        if self.has_config(CONF_TEMP_MAX):
+            return self._config[CONF_TEMP_MAX]
         return DEFAULT_MAX_TEMP
 
     def status_updated(self):
