@@ -1,8 +1,9 @@
 reload:
   description: Reload localtuya and reconnect to all devices.
-
+  name: reload
 set_dp:
   description: Change the value of a datapoint (DP)
+  name: setdp
   fields:
     device_id:
       description: Device ID of device to change datapoint value for
