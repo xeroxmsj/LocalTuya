@@ -1,4 +1,4 @@
-"""Platform to locally control Tuya-based climate devices."""
+﻿"""Platform to locally control Tuya-based climate devices."""
 import asyncio
 import logging
 from functools import partial
@@ -357,18 +357,22 @@ class LocaltuyaClimate(LocalTuyaEntity, ClimateEntity):
         """Return the minimum temperature."""
         if self.has_config(CONF_MIN_TEMP_DP):
             return self.dps_conf(CONF_MIN_TEMP_DP)
-        if self.has_config(CONF_TEMP_MIN):
-            return self._config[CONF_TEMP_MIN]
-        return DEFAULT_MIN_TEMP
+        # DEFAULT_MIN_TEMP is in C
+        if self.temperature_unit == TEMP_FAHRENHEIT:
+            return DEFAULT_MIN_TEMP * 1.8 + 32
+        else:
+            return DEFAULT_MIN_TEMP
 
     @property
     def max_temp(self):
         """Return the maximum temperature."""
         if self.has_config(CONF_MAX_TEMP_DP):
             return self.dps_conf(CONF_MAX_TEMP_DP)
-        if self.has_config(CONF_TEMP_MAX):
-            return self._config[CONF_TEMP_MAX]
-        return DEFAULT_MAX_TEMP
+        # DEFAULT_MAX_TEMP is in C
+        if self.temperature_unit == TEMP_FAHRENHEIT:
+            return DEFAULT_MAX_TEMP * 1.8 + 32
+        else:
+            return DEFAULT_MAX_TEMP
 
     def status_updated(self):
         """Device status was updated."""
