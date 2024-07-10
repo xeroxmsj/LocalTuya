@@ -2,7 +2,7 @@
   "domain": "localtuya",
   "name": "LocalTuya integration",
   "codeowners": [
-    "@rospogrigio", "@postlund"
+    "@xeroxmsj", "@rospogrigio", "@postlund"
   ],
   "config_flow": true,
   "dependencies": [],
@@ -10,5 +10,5 @@
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/rospogrigio/localtuya/issues",
   "requirements": [],
-  "version": "5.2.1"
+  "version": "5.2.1.008"
 }
