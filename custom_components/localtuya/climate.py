@@ -13,10 +13,6 @@ from homeassistant.components.climate import (
 from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
-    HVAC_MODE_COOL,
-    HVAC_MODE_DRY,
-    HVAC_MODE_WET,
-    HVAC_MODE_FAN_ONLY,
     PRESET_AWAY,
     PRESET_ECO,
     PRESET_HOME,
@@ -99,12 +95,12 @@ HVAC_MODE_SETS = {
         HVACMode.AUTO: "0",
     },
     "Qlima": {
-        HVAC_MODE_HEAT: "hot",
-        HVAC_MODE_AUTO: "auto",
-        HVAC_MODE_COOL: "cold",
-        HVAC_MODE_DRY: "dry",
-        HVAC_MODE_WET: "wet",
-        HVAC_MODE_FAN_ONLY: "wind",
+        HVACMode.HEAT: "hot",
+        HVACMode.AUTO: "auto",
+        HVACMode.COOL: "cold",
+        HVACMode.DRY: "dry",
+        HVACMode.WET: "wet",
+        HVACMode.FAN_ONLY: "wind",
     },
 }
 HVAC_ACTION_SETS = {
